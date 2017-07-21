@@ -13,14 +13,16 @@ public class PartsController : MonoBehaviour {
 	//nanoKontrol2を宣言
 	private NanoKontrol2 nanoKontrol2;
     float posX, posY, posZ;
-    float rotX;
+    float rotX,rotY,rotZ;
 
 	void Start()
 	{
 		this.posX = transform.position.x;
 		this.posY = transform.position.y;
 		this.posZ = transform.position.z;
-        this.rotX = transform.rotation.x;
+		this.rotX = transform.rotation.x;
+		this.rotY = transform.rotation.y;
+		this.rotZ = transform.rotation.z;
 		//Start()の中でコールバック関数の設定を行う
 		nanoKontrol2 = GameObject.Find("NanoKontrol2").GetComponent<NanoKontrol2>();
 		nanoKontrol2.valueChangedFunctions.Add(nanoKontrol2_valueChanged);
@@ -38,7 +40,7 @@ public class PartsController : MonoBehaviour {
 
 		if (keyName == KnobName)
 		{
-			transform.rotation = Quaternion.Euler(rotX+keyValue*200/128-45, 0, 0);
+            transform.rotation = Quaternion.Euler(rotX+keyValue*200/128-45, rotY,rotZ);
 		}
 
 
@@ -55,6 +57,7 @@ public class PartsController : MonoBehaviour {
 		//Debug.Log (nanoKontrol2.Slider2);
 		//Debug.Log (nanoKontrol2.knob1);
 		//Debug.Log (nanoKontrol2.knob2);
+        Debug.Log(rotY);
 	}
 
 
